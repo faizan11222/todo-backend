@@ -42,7 +42,7 @@ describe("Todos API", () => {
     await todo.save();
 
     const response = await request(app)
-      .put(`/api/todos/${todo._id}`)
+      .patch(`/api/todos/${todo._id}`)
       .send({ completed: true });
     expect(response.status).toBe(200);
     expect(response.body.completed).toBe(true);

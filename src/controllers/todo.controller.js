@@ -31,7 +31,6 @@ const todosController = {
 
   updateTodo: async (req, res) => {
     const { id } = req.params;
-    const { completed } = req.body;
 
     // Validation
     const errors = validationResult(req);
@@ -42,7 +41,7 @@ const todosController = {
     try {
       const todo = await Todo.findByIdAndUpdate(
         id,
-        { completed },
+        { ...req.body },
         { new: true }
       );
       res.json(todo);
